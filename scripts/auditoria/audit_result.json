@@ -1,0 +1,448 @@
+{
+ "pop": {
+  "Cuiabá": [
+   650877,
+   650877,
+   0
+  ],
+  "Várzea Grande": [
+   300078,
+   300078,
+   0
+  ],
+  "Nossa Senhora do Livramento": [
+   12940,
+   12940,
+   0
+  ],
+  "Santo Antônio de Leverger": [
+   15246,
+   15246,
+   0
+  ],
+  "Acorizal": [
+   5014,
+   5014,
+   0
+  ],
+  "Chapada dos Guimarães": [
+   18990,
+   18990,
+   0
+  ],
+  "Campo Verde": [
+   44585,
+   44585,
+   0
+  ]
+ },
+ "recalc": [
+  {},
+  {}
+ ],
+ "coer": {
+  "piramide≠pop": [
+   209,
+   [
+    [
+     "510340305000007",
+     157,
+     162
+    ],
+    [
+     "510340305000009",
+     118,
+     125
+    ],
+    [
+     "510340305000016",
+     130,
+     136
+    ],
+    [
+     "510340305400005",
+     0,
+     80
+    ],
+    [
+     "510340305400008",
+     167,
+     172
+    ]
+   ]
+  ],
+  "densidade≠pop/area": [
+   70,
+   [
+    [
+     "510340305400058",
+     24670.2,
+     25238.1
+    ],
+    [
+     "510340305410222",
+     11599.8,
+     11347.8
+    ],
+    [
+     "510340310000003",
+     0.0,
+     0.0
+    ],
+    [
+     "510340310000004",
+     0.7,
+     0.7
+    ],
+    [
+     "510340310000013",
+     1.2,
+     1.2
+    ]
+   ]
+  ],
+  "pop_x_fracao_incoerente": [
+   5,
+   [
+    [
+     "510340310420056",
+     "sgb_alta_pop",
+     1358,
+     2078,
+     65.3
+    ],
+    [
+     "510340310420056",
+     "a1974_pop",
+     1437,
+     2078,
+     69.1
+    ],
+    [
+     "510840205000271",
+     "app_pop",
+     30,
+     1205,
+     2.4
+    ],
+    [
+     "510840220000090",
+     "inund_pop",
+     2819,
+     3588,
+     78.6
+    ],
+    [
+     "510840220000090",
+     "sgb_alta_pop",
+     788,
+     3588,
+     22.0
+    ]
+   ]
+  ],
+  "distancia_implausivel": [
+   5,
+   [
+    [
+     "510780015000009",
+     "d_saude",
+     160580
+    ],
+    [
+     "510780015000010",
+     "d_saude",
+     160570
+    ],
+    [
+     "510780015000021",
+     "d_saude",
+     150150
+    ],
+    [
+     "510780015000022",
+     "d_saude",
+     165130
+    ],
+    [
+     "510780015000024",
+     "d_saude",
+     174390
+    ]
+   ]
+  ]
+ },
+ "dup_ids": 0,
+ "area_geom": {
+  "mediana_%": 0.28,
+  "p95_%": 1.44,
+  "max_%": 9.0,
+  "n>5%": 1
+ },
+ "centroide_fora_mun": [
+  3,
+  [
+   [
+    "510340330000005",
+    "Cuiabá",
+    [
+     "Chapada dos Guimarães"
+    ],
+    21.759
+   ],
+   [
+    "510300705000016",
+    "Chapada dos Guimarães",
+    [
+     "Cuiabá"
+    ],
+    39.771
+   ],
+   [
+    "510780017000014",
+    "Santo Antônio de Leverger",
+    [
+     "Cuiabá"
+    ],
+    88.061
+   ]
+  ]
+ ],
+ "area_mun": {
+  "Cuiabá": [
+   4322.3,
+   4327.448
+  ],
+  "Várzea Grande": [
+   723.5,
+   724.279
+  ],
+  "Nossa Senhora do Livramento": [
+   5529.6,
+   5537.413
+  ],
+  "Santo Antônio de Leverger": [
+   9460.1,
+   9469.139
+  ],
+  "Acorizal": [
+   850.1,
+   850.763
+  ],
+  "Chapada dos Guimarães": [
+   6597.9,
+   6603.252
+  ],
+  "Campo Verde": [
+   4765.2,
+   4770.631
+  ]
+ },
+ "ivsa": {
+  "com_indice": 1799,
+  "sem": {
+   "pop<50": 86,
+   "sem_indice(<60%)": 55
+  },
+  "por_mun": {
+   "Cuiabá": 22.7,
+   "Várzea Grande": 33.6,
+   "Nossa Senhora do Livramento": 65.4,
+   "Santo Antônio de Leverger": 52.9,
+   "Acorizal": 53.9,
+   "Chapada dos Guimarães": 50.3,
+   "Campo Verde": 24.2
+  },
+  "rural_sem_entorno": 366
+ },
+ "corr": {
+  "ndvi×verde": [
+   0.95,
+   1719
+  ],
+  "ndvi×lst": [
+   -0.66,
+   1719
+  ],
+  "verde×veg_nat": [
+   0.78,
+   1719
+  ],
+  "arvore×verde": [
+   -0.04,
+   1632
+  ],
+  "inund×sgb_alta": [
+   0.55,
+   1663
+  ],
+  "c1974×a1974": [
+   0.97,
+   1628
+  ],
+  "renda×analf": [
+   -0.47,
+   1513
+  ],
+  "renda×esgoto": [
+   0.38,
+   1660
+  ],
+  "esgoto×esg_prec": [
+   -0.64,
+   1660
+  ],
+  "d_ubs×dens": [
+   -0.16,
+   1719
+  ]
+ },
+ "lst_media_urb": 38.96,
+ "d_ubs_recalc": {
+  "n": 200,
+  "mediana_dif_m": 43,
+  "p90_dif_m": 543
+ },
+ "equip": {
+  "total": 1222,
+  "por_tipo": {
+   "ubs/CNES": 148,
+   "hosp/CNES": 23,
+   "upa/CNES": 8,
+   "esc/OSM": 357,
+   "cras/OSM": 58,
+   "univ/OSM": 16,
+   "parque/OSM": 598,
+   "uc/OSM": 14
+  },
+  "duplicados_mesmo_ponto": 0,
+  "sem_nome": 446,
+  "dentro_rmvrc": 1221
+ },
+ "bacias": {
+  "bacias_km2": 31945,
+  "sub_km2": 31946,
+  "rmvrc_oficial_km2": 32282.9,
+  "micro_n": 162,
+  "micro_sem_nome": 20
+ },
+ "cobertura_%": {
+  "renda": {
+   "Cuiabá": 98,
+   "Várzea Grande": 98,
+   "Nossa Senhora do Livramento": 100,
+   "Santo Antônio de Leverger": 95,
+   "Acorizal": 89,
+   "Chapada dos Guimarães": 93,
+   "Campo Verde": 100
+  },
+  "analf": {
+   "Cuiabá": 86,
+   "Várzea Grande": 93,
+   "Nossa Senhora do Livramento": 98,
+   "Santo Antônio de Leverger": 86,
+   "Acorizal": 89,
+   "Chapada dos Guimarães": 85,
+   "Campo Verde": 92
+  },
+  "arvore": {
+   "Cuiabá": 93,
+   "Várzea Grande": 91,
+   "Nossa Senhora do Livramento": 26,
+   "Santo Antônio de Leverger": 26,
+   "Acorizal": 37,
+   "Chapada dos Guimarães": 39,
+   "Campo Verde": 62
+  },
+  "pav": {
+   "Cuiabá": 93,
+   "Várzea Grande": 91,
+   "Nossa Senhora do Livramento": 26,
+   "Santo Antônio de Leverger": 26,
+   "Acorizal": 37,
+   "Chapada dos Guimarães": 39,
+   "Campo Verde": 62
+  },
+  "ndvi": {
+   "Cuiabá": 100,
+   "Várzea Grande": 100,
+   "Nossa Senhora do Livramento": 100,
+   "Santo Antônio de Leverger": 100,
+   "Acorizal": 100,
+   "Chapada dos Guimarães": 100,
+   "Campo Verde": 100
+  },
+  "lst": {
+   "Cuiabá": 100,
+   "Várzea Grande": 100,
+   "Nossa Senhora do Livramento": 100,
+   "Santo Antônio de Leverger": 100,
+   "Acorizal": 100,
+   "Chapada dos Guimarães": 100,
+   "Campo Verde": 100
+  },
+  "inund": {
+   "Cuiabá": 99,
+   "Várzea Grande": 100,
+   "Nossa Senhora do Livramento": 26,
+   "Santo Antônio de Leverger": 26,
+   "Acorizal": 42,
+   "Chapada dos Guimarães": 47,
+   "Campo Verde": 64
+  },
+  "app_pct": {
+   "Cuiabá": 99,
+   "Várzea Grande": 100,
+   "Nossa Senhora do Livramento": 30,
+   "Santo Antônio de Leverger": 27,
+   "Acorizal": 42,
+   "Chapada dos Guimarães": 47,
+   "Campo Verde": 64
+  },
+  "veg_nat": {
+   "Cuiabá": 100,
+   "Várzea Grande": 100,
+   "Nossa Senhora do Livramento": 100,
+   "Santo Antônio de Leverger": 100,
+   "Acorizal": 100,
+   "Chapada dos Guimarães": 100,
+   "Campo Verde": 100
+  },
+  "erosao": {
+   "Cuiabá": 100,
+   "Várzea Grande": 100,
+   "Nossa Senhora do Livramento": 100,
+   "Santo Antônio de Leverger": 100,
+   "Acorizal": 100,
+   "Chapada dos Guimarães": 100,
+   "Campo Verde": 100
+  },
+  "d_ubs": {
+   "Cuiabá": 100,
+   "Várzea Grande": 100,
+   "Nossa Senhora do Livramento": 100,
+   "Santo Antônio de Leverger": 100,
+   "Acorizal": 100,
+   "Chapada dos Guimarães": 100,
+   "Campo Verde": 100
+  },
+  "sgb_alta": {
+   "Cuiabá": 100,
+   "Várzea Grande": 100,
+   "Nossa Senhora do Livramento": 0,
+   "Santo Antônio de Leverger": 0,
+   "Acorizal": 0,
+   "Chapada dos Guimarães": 100,
+   "Campo Verde": 0
+  },
+  "a1974": {
+   "Cuiabá": 100,
+   "Várzea Grande": 100,
+   "Nossa Senhora do Livramento": 0,
+   "Santo Antônio de Leverger": 0,
+   "Acorizal": 0,
+   "Chapada dos Guimarães": 0,
+   "Campo Verde": 0
+  }
+ }
+}
