@@ -1,0 +1,29 @@
+# metodologia do Laboratório (HTML + PDF)
+import html as _hl
+def _ln(k):
+    return 'Favela ou comunidade urbana (1 = setor com código de FCU, 0 = demais)' if k=='fcu' else k
+_names=dict(_rl.findall(r"\{k:'(\w+)',ax:'\w+',n:'([^']*)'",H))
+_rows=''.join(f"<tr><td class='l'><b>{_hl.escape(n)}</b></td><td class='l'>{'; '.join(_hl.escape((_names.get(c,_ln(c)) if c!='fcu' else _ln(c)))+(' (log)' if lg else '')+(' ↑' if s>0 else ' ↓') for c,s,lg in comps)}</td><td class='l'>{', '.join('ODS '+str(o) for o in sorted(ods))}</td></tr>" for k,n,d,ods,comps in LENS)
+LH=f'''<h3 style="margin-top:18px">11. Laboratório de Governança Territorial: Índice de Prioridade Territorial (IPT)</h3>
+<p><b>11.1 Objetivo.</b> Ordenar territórios segundo a necessidade de ação pública para um objetivo de política escolhido. Não há um ranking único: cada objetivo (lente) usa seu próprio conjunto de indicadores, com pesos iguais e publicados. O IPT indica necessidade relativa, não juízo sobre o território nem previsão de resultado.</p>
+<p><b>11.2 Normalização.</b> Para cada indicador x, calculam-se os percentis 2 e 98 (P2 e P98) entre os setores com 50 ou mais moradores, e z = (x − P2) ÷ (P98 − P2), limitado ao intervalo 0–1. Quando um valor menor indica pior situação (↓ na tabela), usa-se 1 − z. Distâncias, renda e vegetação por habitante são normalizadas em logaritmo. O indicador de favela/comunidade urbana entra como 0 ou 1.</p>
+<p><b>11.3 Fórmula.</b> IPT = 100 × (Σ zᵢ) ÷ n, em que n é o número de indicadores da lente com valor no setor. O setor só recebe IPT se tiver ao menos 60% dos indicadores da lente e 50 ou mais moradores. Vegetação e temperatura por satélite cobrem os 7 municípios; a suscetibilidade a inundação, as áreas urbanas; a carta do SGB, Cuiabá, Várzea Grande e Chapada dos Guimarães; a cheia de 1974, só a conurbação Cuiabá–Várzea Grande. Onde falta um desses indicadores, o IPT usa os demais, desde que restem 60% deles.</p>
+<div class="tblwrap" style="max-height:none"><table class="dt"><thead><tr><th class="l">Objetivo (lente)</th><th class="l">Indicadores (↑ maior = mais prioridade; ↓ menor = mais prioridade)</th><th class="l">ODS</th></tr></thead><tbody>{_rows}</tbody></table></div>
+<p style="margin-top:10px"><b>11.4 Sobreposição e dupla contagem.</b> As lentes não somam índices prontos: a "Prioridade geral" usa o IVSA, e por isso não repete saneamento, renda ou analfabetismo, que já estão nele. Temperatura de superfície e anomalia térmica medem a mesma coisa (a anomalia é a temperatura menos uma constante), e só a temperatura entra na lente de adaptação climática.</p>
+<p><b>11.5 Territórios.</b> Bairro, microbacia ou município: IPT = média dos IPT dos setores ponderada pelos moradores. "Principais déficits" = indicadores da lente com nota média z ≥ 0,6 no território (ponderada pelos moradores).</p>
+<p><b>11.6 Robustez.</b> Sortearam-se 300 conjuntos de pesos aleatórios (distribuição de Dirichlet com parâmetro 1, semente fixa 20261001, portanto reprodutível). Para cada conjunto, recalcula-se a nota de todos os setores e marca-se quem fica entre os 20% de maior nota. Robustez do setor = fração dos 300 sorteios em que ele ficou nesse grupo; no território, média ponderada pelos moradores. Classes: robusta (≥ 80%), moderada (50% a 80%), sensível aos pesos (< 50%).</p>
+<p><b>11.7 Diagnóstico territorial.</b> Para cada indicador, o valor do território (agregado pelas regras do Atlas) é comparado com a distribuição dos setores da RMVRC: crítico = pior que o de pelo menos 80% dos setores; atenção = pior que 60% a 80%; adequado = melhor que pelo menos 80%. Empates não contam como pior. População afetada: moradores, domicílios (DPPO), crianças e idosos (porcentagem × moradores de cada setor), moradores em suscetibilidade alta e em APP (estimativas do Atlas). ODS relacionados: os associados aos indicadores em situação crítica ou de atenção.</p>
+<p><b>11.8 Simulador de metas.</b> Domicílios atendidos = Σ (cobertura do setor × domicílios); domicílios a atender = máx(0; meta × domicílios − atendidos), com meta de 90% (esgoto) ou 99% (água), conforme a Lei nº 14.026/2020. Os setores são ordenados pelo número de domicílios sem atendimento e somados até cobrir o déficit; o número resultante é o mínimo de setores que bastam. Moradores estimados = domicílios a atender × média de moradores por domicílio do território. O Censo mede a ligação à rede, não o tratamento, então o resultado é um limite inferior do esforço necessário.</p>
+<p><b>11.9 Limites.</b> O IPT é tão bom quanto os dados do Atlas (Censo 2022, camadas de 2023–2026). Ele não mede custo nem viabilidade das intervenções e não substitui o diagnóstico de campo e a participação dos moradores.</p>
+'''
+_t='<h3 style="margin-top:18px">11. Referências</h3>'
+assert H.count(_t)==1
+H=H.replace(_t,LH+'<h3 style="margin-top:18px">12. Referências</h3>')
+def _pp(s): return (_rl.sub(r'<[^>]+>','',s).replace('→','->').replace('≥','>=').replace('−','-').replace('Σ ','soma de ').replace('zᵢ','z(i)').replace('↑','(+)').replace('↓','(-)').replace("'","\\'"))
+_js=["  h2('9. Laboratório de Governança Territorial (IPT)');"]
+for _p in _rl.findall(r'<p[^>]*>(.*?)</p>',LH,flags=_rl.S): _js.append("  para('"+_pp(_rl.sub(r'^\s*11\.','9.',_rl.sub(r'<b>11\.','<b>9.',_p)))+"',{gap:3});")
+for k,n,d,ods,comps in LENS: _js.append("  para('"+_pp(n+': '+'; '.join((_names.get(c,_ln(c)) if c!='fcu' else _ln(c))+(' (log)' if lg else '')+(' (+)' if s>0 else ' (-)') for c,s,lg in comps)+'. '+', '.join('ODS '+str(o) for o in sorted(ods)))+"',{bullet:true,indent:6,size:9,gap:1});")
+_o="  h2('9. Limitações');"; assert H.count(_o)==1
+H=H.replace(_o,'\n'.join(_js)+"\n  h2('10. Limitações');")
+_o="  h2('10. Referências metodológicas');"; assert H.count(_o)==1
+H=H.replace(_o,"  h2('11. Referências metodológicas');")

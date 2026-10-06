@@ -1,0 +1,60 @@
+<div class="sec-h" id="saude" style="scroll-margin-top:calc(var(--tb) + 12px)"><span class="kick">ODS 3 · Saúde ambiental · DATASUS</span><h2>Saúde ambiental</h2><p>Internações no SUS por doenças ligadas ao saneamento inadequado, por doenças respiratórias e casos de dengue dos moradores dos sete municípios. Média anual de 2023 a 2025, comparada à população do Censo 2022.</p></div>
+<section class="block" id="saude-b">
+  <div class="sdsel"><span>Período</span><div class="seg" role="group" aria-label="Período" id="sd-per"><button data-p="0" aria-pressed="false">2023</button><button data-p="1" aria-pressed="false">2024</button><button data-p="2" aria-pressed="false">2025</button><button data-p="m" aria-pressed="true">Média 2023–2025</button></div><em>muda os números de destaque e a tabela por município</em></div>
+  <div class="kpis vk" id="sd-kpi"></div>
+  <h3 style="margin-top:18px" id="sd-tab-t">Taxas por município (média anual 2023–2025)</h3>
+  <div class="tblwrap" style="max-height:none"><table class="dt" id="sd-tab"></table></div>
+  <p class="note">DRSAI = Doenças Relacionadas ao Saneamento Ambiental Inadequado. Respiratórias = capítulo X da CID-10. Dengue = casos prováveis notificados no SINAN (por ano do primeiro sintoma). Saneamento = % dos domicílios no Censo 2022.</p>
+  <h3 style="margin-top:22px">Comparação 2023 · 2024 · 2025</h3>
+  <div class="sdsel"><div class="seg" role="group" aria-label="Indicador" id="sd-ind"><button data-k="drsai" aria-pressed="true">DRSAI</button><button data-k="resp" aria-pressed="false">Respiratórias</button><button data-k="asma" aria-pressed="false">Pneumonia, asma e DPOC</button><button data-k="deng" aria-pressed="false">Dengue</button><button data-k="all" aria-pressed="false">Todas as internações</button></div></div>
+  <div class="sdyl"><span><i style="background:var(--y1)"></i>2023</span><span><i style="background:var(--y2)"></i>2024</span><span><i style="background:var(--y3)"></i>2025</span><em id="sd-unit"></em></div>
+  <div class="sdyr">
+    <div class="sdyc"><svg id="sd-yc" role="img" aria-label="Taxa por município e ano"></svg></div>
+    <div class="tblwrap" style="max-height:none"><table class="dt" id="sd-yt"></table></div>
+  </div>
+  <p class="note" id="sd-ynote"></p>
+  <div class="split" style="margin-top:14px">
+    <div>
+      <h3>DRSAI na RMVRC, por forma de transmissão</h3>
+      <div class="tblwrap" style="max-height:none"><table class="dt" id="sd-grp"></table></div>
+      <h3 style="margin-top:16px">Dengue: casos prováveis por ano</h3>
+      <div class="tblwrap" style="max-height:none"><table class="dt" id="sd-deng"></table></div>
+    </div>
+    <div>
+      <h3>Sazonalidade: internações por mês, em cada ano</h3>
+      <div class="sdm"><div><div class="sdm-t">Doenças respiratórias</div><svg id="sd-m1" viewBox="0 0 360 170" role="img" aria-label="Internações respiratórias por mês"></svg></div><div><div class="sdm-t">DRSAI</div><svg id="sd-m2" viewBox="0 0 360 170" role="img" aria-label="Internações por DRSAI por mês"></svg></div></div>
+      <div class="sdyl"><span><i style="background:var(--y1)"></i>2023</span><span><i style="background:var(--y2)"></i>2024</span><span><i style="background:var(--y3)"></i>2025</span></div>
+      <p class="note">Total mensal de internações nos sete municípios. As respiratórias atingem o pico em abril–maio nos três anos, no fim da estação chuvosa, e não no auge das queimadas (agosto–setembro). As DRSAI variam mais de um ano para outro; o pico de janeiro de 2024 coincide com o ano de epidemia de dengue.</p>
+    </div>
+  </div>
+  <div class="split" style="margin-top:14px">
+    <div>
+      <h3>Como foi calculado</h3>
+      <ul class="note">
+        <li><b>Taxa de internação</b> = (internações de 2023 + 2024 + 2025) ÷ 3 ÷ população do Censo 2022 × 10.000. Conta o município de residência do paciente, não o do hospital.</li>
+        <li><b>Incidência de dengue</b> = casos prováveis (2023–2025) ÷ 3 ÷ população × 100.000. Casos prováveis = todas as notificações, exceto as descartadas.</li>
+        <li><b>DRSAI</b>, pela classificação da Funasa (BRASIL, 2010), adaptada à Lista de Morbidade CID-10 do SIH:
+          <ul>
+            <li>feco-oral: cólera, febres tifoide e paratifoide, shiguelose, amebíase, diarreia e gastroenterite infecciosa, outras doenças intestinais;</li>
+            <li>inseto vetor: dengue, febre amarela, leishmanioses, malária, doença de Chagas, filariose;</li>
+            <li>contato com a água: leptospirose, esquistossomose;</li>
+            <li>higiene: tracoma, conjuntivite, micoses;</li>
+            <li>geo-helmintos: ancilostomíase e outras helmintíases.</li>
+          </ul>
+          A hepatite A fica de fora porque a lista do SIH não a separa das outras hepatites virais.</li>
+        <li><b>Respiratórias</b>: capítulo X da CID-10. O recorte "pneumonia, asma e DPOC" soma pneumonia, asma e bronquite/enfisema/doença pulmonar obstrutiva crônica.</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Limites desta leitura</h3>
+      <ul class="note">
+        <li>O DATASUS público só informa o município de residência. Por isso estes dados <b>não estão no mapa por setor</b>: cruzá-los com bairros exige os microdados do SIH com CEP, que podem ser pedidos à SES-MT ou pela Lei de Acesso à Informação.</li>
+        <li>Só entram internações no SUS. Quem usa plano de saúde não aparece.</li>
+        <li>Municípios pequenos internam menos porque têm menos leitos e encaminham pacientes, então taxa baixa não significa necessariamente menos doença. Exemplo: Acorizal e Santo Antônio de Leverger têm quase nenhum esgoto em rede e as menores taxas de DRSAI.</li>
+        <li>Com números pequenos, uma epidemia muda muito a média. Campo Verde, por exemplo, teve surto de dengue em 2023–2024.</li>
+        <li>Com sete municípios não se testa correlação estatística. A tabela serve para descrever, não para provar causa.</li>
+      </ul>
+      <p class="note" style="margin-top:8px"><b>Fontes:</b> Ministério da Saúde, SIH/SUS, Morbidade Hospitalar por local de residência (MT), TabNet, arquivos de processamento de jan/2022 a jul/2026; SINAN, Dengue, casos prováveis por município de residência, TabNet (dados de 2025 atualizados em 07/07/2026). Consulta em 01/10/2026. População: IBGE, Censo 2022.</p>
+    </div>
+  </div>
+</section>

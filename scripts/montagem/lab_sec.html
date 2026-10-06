@@ -1,0 +1,47 @@
+<div class="sec-h" id="lab" style="scroll-margin-top:calc(var(--tb) + 12px)"><span class="kick">Laboratório de Governança Territorial</span><h2>Onde agir, por que agir e com qual prioridade</h2><p>O Atlas mostra como está o território. O Laboratório parte dos mesmos dados para apoiar a decisão: onde estão os problemas, quem é afetado, onde eles se sobrepõem, que território priorizar e que meta acompanhar. Os critérios são públicos e a prioridade depende do objetivo da política escolhida.</p></div>
+<section class="block" id="lab-b">
+  <ol class="labflow" aria-label="Etapas do Laboratório">
+    <li class="ok"><b>Onde</b><span>estão os problemas</span></li>
+    <li class="ok"><b>Quem</b><span>é afetado</span></li>
+    <li class="ok"><b>Sobreposição</b><span>de déficits</span></li>
+    <li class="ok"><b>Prioridade</b><span>por objetivo</span></li>
+    <li class="ok"><b>Meta</b><span>distância até ela</span></li>
+  </ol>
+
+  <div class="labstep"><span class="fs-n">1</span><div><h3>Escolha o objetivo da política pública</h3><p>Cada objetivo combina um conjunto próprio de indicadores. Não existe um ranking único dos bairros: a prioridade muda conforme a política analisada.</p></div></div>
+  <div class="lenses" id="lab-lens" role="group" aria-label="Objetivo da política"></div>
+  <div class="lensinfo" id="lab-info"></div>
+
+  <div class="labstep"><span class="fs-n">2</span><div><h3>Mapa de prioridades</h3><p>Territórios ordenados pelo Índice de Prioridade Territorial (IPT, 0 a 100) do objetivo escolhido, no recorte selecionado no topo da página. <b>Robustez</b> = em quantas de 300 combinações aleatórias de pesos o território continua entre os 20% de maior prioridade.</p></div></div>
+  <div class="sdsel"><span>Unidade</span><div class="seg" role="group" aria-label="Unidade territorial" id="lab-unit"><button data-u="bairro" aria-pressed="true">Bairros</button><button data-u="micro" aria-pressed="false">Microbacias</button><button data-u="setor" aria-pressed="false">Setores</button><button data-u="mun" aria-pressed="false">Municípios</button></div>
+    <div class="pdfwrap"><button class="btn" type="button" id="rk-pdfbtn" aria-haspopup="dialog">Gerar PDF das prioridades…</button>
+      <div class="pdfpop" id="rk-pdfpop" role="dialog" aria-label="Gerar PDF das prioridades" hidden>
+        <div class="pdfpop-h"><b>Gerar PDF das prioridades</b><button type="button" class="hlpx" id="rk-pdf-x" aria-label="Fechar">×</button></div>
+        <button type="button" class="pdfopt" id="rk-pdf-lens"><b>Lista completa do objetivo escolhido</b><span></span><em>Todos os territórios da unidade selecionada, em ordem de prioridade: moradores, IPT, robustez e principais déficits.</em></button>
+        <button type="button" class="pdfopt" id="rk-pdf-all"><b>Quadro comparativo dos 9 objetivos</b><span></span><em>Todos os territórios, com o IPT de cada um nos nove objetivos de política, lado a lado.</em></button>
+      </div></div></div>
+  <div class="kpis vk" id="lab-kpi"></div>
+  <div class="tblwrap" style="max-height:none"><table class="dt" id="lab-rank"></table></div>
+  <p class="note" id="lab-rnote"></p>
+
+  <div class="labstep"><span class="fs-n">3</span><div><h3>Diagnóstico territorial</h3><p>Escolha um território da tabela acima ou digite um bairro. O diagnóstico lista os déficits, a população afetada e os ODS relacionados.</p></div></div>
+  <div class="sdsel labdsel"><span>Território</span><input id="lab-q" list="lab-bairros" placeholder="Digite um bairro…" aria-label="Bairro para diagnóstico"><datalist id="lab-bairros"></datalist>
+    <div class="pdfwrap"><button class="btn" type="button" id="lab-pdfbtn" aria-haspopup="dialog">Gerar PDF do diagnóstico…</button>
+      <div class="pdfpop" id="lab-pdfpop" role="dialog" aria-label="Gerar PDF do diagnóstico" hidden>
+        <div class="pdfpop-h"><b>Gerar PDF do diagnóstico</b><button type="button" class="hlpx" id="lab-pdf-x" aria-label="Fechar">×</button></div>
+        <button type="button" class="pdfopt" id="lab-pdf-sel"><b>Território selecionado</b><span></span><em>Ficha completa: população afetada, todas as questões, situações adequadas, prioridade por objetivo e ODS.</em></button>
+        <button type="button" class="pdfopt" id="lab-pdf-all"><b>Lista completa dos bairros</b><span></span><em>Uma linha por bairro: moradores, crianças, idosos, domicílios, número de questões críticas e de atenção, quais são e os ODS.</em></button>
+      </div></div></div>
+  <div id="lab-diag"></div>
+
+  <div class="labstep"><span class="fs-n">4</span><div><h3>Simulador de metas de saneamento</h3><p>Quanto falta para a meta legal no território escolhido, e quantos setores, priorizados pelo maior déficit, bastam para alcançá-la. É um cálculo de distância até a meta, não uma previsão de efeitos.</p></div></div>
+  <div class="sdsel"><span>Meta</span><div class="seg" role="group" aria-label="Meta" id="lab-meta"><button data-m="esgoto" aria-pressed="true">Esgoto em rede · 90%</button><button data-m="agua" aria-pressed="false">Água da rede · 99%</button></div><span style="margin-left:8px">Território</span><div class="seg" role="group" aria-label="Território da simulação" id="lab-scope"><button data-s="rec" aria-pressed="true">Recorte do topo</button><button data-s="diag" aria-pressed="false">Território do diagnóstico</button></div>
+    <div class="pdfwrap"><button class="btn" type="button" id="sim-pdfbtn" aria-haspopup="dialog">Gerar PDF do simulador…</button>
+      <div class="pdfpop" id="sim-pdfpop" role="dialog" aria-label="Gerar PDF do simulador" hidden>
+        <div class="pdfpop-h"><b>Gerar PDF do simulador</b><button type="button" class="hlpx" id="sim-pdf-x" aria-label="Fechar">×</button></div>
+        <button type="button" class="pdfopt" id="sim-pdf-bairros"><b>Lista completa dos bairros</b><span></span><em>Uma linha por bairro: domicílios, cobertura atual, domicílios sem atendimento e quanto falta para a meta em cada um.</em></button>
+        <button type="button" class="pdfopt" id="sim-pdf-setores"><b>Lista completa dos setores necessários</b><span></span><em>Todos os setores que, somados do maior para o menor déficit, bastam para alcançar a meta no território.</em></button>
+      </div></div></div>
+  <div id="lab-sim"></div>
+
+</section>
