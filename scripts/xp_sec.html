@@ -1,0 +1,69 @@
+<div class="sec-h" id="explorar" style="scroll-margin-top:calc(var(--tb) + 12px)"><span class="kick">Explorar · cruzar · comparar</span><h2>Explorar e cruzar indicadores</h2><p>Combine dois indicadores no mesmo mapa, selecione setores no gráfico de dispersão, monte consultas com várias condições e compare dois mapas lado a lado. Os resultados podem ser baixados em CSV.</p></div>
+<section class="block xpb" id="xp-biv">
+  <h3 class="xh">1. Mapa bivariado: dois indicadores ao mesmo tempo</h3>
+  <p class="note">Cada setor recebe uma de nove cores, conforme o terço (baixo, médio ou alto) em que está em cada indicador. Os terços são calculados sobre todos os setores da RMVRC com dado, para que a mesma cor signifique o mesmo nas diferentes áreas.</p>
+  <div class="xpctl">
+    <label>Indicador horizontal (X)<select id="xp-x"></select></label>
+    <label>Indicador vertical (Y)<select id="xp-y"></select></label>
+    <label>Território<select id="xp-t"></select></label>
+    <button type="button" class="xpbtn" id="xp-swap">Inverter X e Y</button>
+  </div>
+  <div class="xpgrid">
+    <div class="xpmapw"><svg id="xp-map" role="img" aria-label="Mapa bivariado"></svg><div class="xpzoom"><button type="button" data-z="1">+</button><button type="button" data-z="-1">−</button><button type="button" data-z="0">⤢</button></div></div>
+    <aside class="xpside">
+      <div class="xpleg" id="xp-leg"></div>
+      <div class="xpsum" id="xp-sum"></div>
+    </aside>
+  </div>
+  <h3 class="xh">2. Dispersão ligada ao mapa</h3>
+  <p class="note">Arraste o cursor sobre o gráfico para selecionar setores: eles ficam destacados no mapa acima e resumidos ao lado. Clique fora da seleção para limpar.</p>
+  <div class="xpgrid xpg2">
+    <div class="xpscw"><svg id="xp-sc" role="img" aria-label="Diagrama de dispersão"></svg></div>
+    <aside class="xpside"><div id="xp-brush"></div><button type="button" class="xpbtn" id="xp-csv1">Baixar os setores selecionados (CSV)</button></aside>
+  </div>
+</section>
+<section class="block xpb" id="xp-q">
+  <h3 class="xh">3. Consulta por condições</h3>
+  <p class="note">Encontre os setores que atendem a todas as condições ao mesmo tempo (por exemplo: esgoto na rede abaixo de 50% <i>e</i> renda média abaixo de R$ 2.000 <i>e</i> suscetibilidade alta a inundação acima de 10%). O valor inicial de cada condição é a mediana da RMVRC.</p>
+  <div id="xp-conds"></div>
+  <div class="xpctl"><button type="button" class="xpbtn" id="xp-add">+ Condição</button><label>Território<select id="xp-qt"></select></label><button type="button" class="xpbtn" id="xp-csv2">Baixar resultado (CSV)</button></div>
+  <div class="xpgrid">
+    <div class="xpmapw"><svg id="xp-qmap" role="img" aria-label="Setores que atendem às condições"></svg></div>
+    <aside class="xpside" id="xp-qres"></aside>
+  </div>
+</section>
+<section class="block xpb" id="xp-cmp">
+  <h3 class="xh">4. Comparar lado a lado</h3>
+  <p class="note">Dois mapas sincronizados: ao aproximar ou mover um, o outro acompanha. Passe o cursor para ver o valor do mesmo setor nos dois indicadores.</p>
+  <div class="xpctl"><label>Mapa da esquerda<select id="xp-c1"></select></label><label>Mapa da direita<select id="xp-c2"></select></label><label>Território<select id="xp-ct"></select></label></div>
+  <div class="xpcmp"><figure><figcaption id="xp-c1t"></figcaption><div class="xpmapw"><svg id="xp-cm1"></svg></div><div class="xpqleg" id="xp-cl1"></div></figure><figure><figcaption id="xp-c2t"></figcaption><div class="xpmapw"><svg id="xp-cm2"></svg></div><div class="xpqleg" id="xp-cl2"></div></figure></div>
+</section>
+<div class="sec-h" id="desig" style="scroll-margin-top:calc(var(--tb) + 12px)"><span class="kick">Análise espacial · desigualdade · validação</span><h2>Desigualdade territorial e validação</h2><p>Onde os problemas se agrupam no espaço, quanto da desigualdade está entre os municípios e quanto está dentro deles, como os serviços se distribuem entre os mais pobres e os mais ricos, e o quanto os índices do Atlas são robustos e confiáveis.</p></div>
+<section class="block xpb" id="ds-lisa">
+  <h3 class="xh">1. Agrupamentos espaciais (Moran global e LISA)</h3>
+  <p class="note">O índice de Moran mede se setores vizinhos tendem a ter valores parecidos. O LISA identifica onde estão os agrupamentos: <b>alto-alto</b> (bolsões de valores altos cercados de valores altos), <b>baixo-baixo</b>, e os setores destoantes da vizinhança (alto-baixo, baixo-alto). Vizinhança: os 6 setores mais próximos; entram os setores com 50 ou mais moradores. Significância do Moran global por 999 permutações e de cada setor por 199 permutações condicionais (p &lt; 0,05, sem correção para comparações múltiplas: leia os agrupamentos como indícios a verificar em campo).</p>
+  <div class="xpctl"><label>Indicador<select id="ds-k"></select></label><label>Território<select id="ds-t"></select></label></div>
+  <div class="xpgrid"><div class="xpmapw"><svg id="ds-map" role="img" aria-label="Mapa de agrupamentos LISA"></svg></div><aside class="xpside" id="ds-sum"></aside></div>
+</section>
+<section class="block xpb" id="ds-ineq">
+  <h3 class="xh">2. Desigualdade de renda entre setores</h3>
+  <p class="note">Índices de Gini e de Theil calculados sobre a renda média dos setores, ponderada pelo número de responsáveis com rendimento. O Theil se decompõe em desigualdade <b>entre</b> os municípios e <b>dentro</b> deles. Por usar médias de setor, os valores subestimam a desigualdade entre pessoas.</p>
+  <div class="tblwrap" style="max-height:none"><table class="dt" id="ds-gini"></table></div>
+  <p class="note" id="ds-theil"></p>
+  <h3 class="xh">3. Gradiente social: como os serviços se distribuem por renda</h3>
+  <p class="note">Os setores foram ordenados pela renda média e divididos em cinco grupos com o mesmo número de moradores (quintis de população). A tabela compara os 20% de moradores dos setores mais pobres com os 20% dos mais ricos.</p>
+  <div class="xpctl"><label>Território<select id="ds-gt"></select></label></div>
+  <div class="tblwrap" style="max-height:none"><table class="dt" id="ds-grad"></table></div>
+</section>
+<section class="block xpb" id="ds-val">
+  <h3 class="xh">4. Validação do IVSA</h3>
+  <div class="split"><div><h4 class="xh4">Validade convergente</h4><div id="ds-conv"></div></div><div><h4 class="xh4">Robustez aos pesos</h4><div id="ds-rob"></div></div></div>
+  <h3 class="xh">5. Confiabilidade do dado em cada setor</h3>
+  <p class="note">Nota de 0 a 100 que resume as limitações conhecidas do dado em cada setor: poucos moradores, componentes do IVSA sob sigilo, ausência da pesquisa de entorno, vegetação em pixels de 40 m, temperatura de imagem vizinha ou amostrada a 120 m e área urbana sem modelo de inundação. A nota aparece também na ficha do setor.</p>
+  <div class="xpgrid"><div class="xpmapw"><svg id="ds-cmap" role="img" aria-label="Mapa de confiabilidade"></svg></div><aside class="xpside" id="ds-csum"></aside></div>
+</section>
+<div class="sec-h" id="politicas" style="scroll-margin-top:calc(var(--tb) + 12px)"><span class="kick">Aplicabilidade territorial</span><h2>Subsídios a políticas públicas</h2><p>Escolha um município ou bairro e receba um diagnóstico com as situações críticas em relação à RMVRC, as ações e os instrumentos legais pertinentes, os números para dimensionar a ação, os setores prioritários e os indicadores para monitorar. Use o botão “Gerar PDF desta página” para anexar a ficha a planos e projetos.</p></div>
+<section class="block xpb" id="pp-b">
+  <div class="xpctl"><label>Município<select id="pp-m"></select></label><label>Bairro ou distrito<select id="pp-b2"></select></label></div>
+  <div id="pp-out"></div>
+</section>
