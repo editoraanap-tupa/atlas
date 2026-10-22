@@ -2,7 +2,7 @@
 
 Atlas digital interativo com indicadores socioambientais dos **1.940 setores censitários** dos sete municípios do núcleo da RMVRC (Cuiabá, Várzea Grande, Acorizal, Campo Verde, Chapada dos Guimarães, Nossa Senhora do Livramento e Santo Antônio de Leverger), em Mato Grosso.
 
-**Acesse o Atlas:** https://editoraanap-tupa.github.io/atlas/
+**Acesse o Atlas:** https://atlasrmvrc.com.br (também em https://editoraanap-tupa.github.io/atlas/)
 
 ## O que o Atlas reúne
 
@@ -10,6 +10,7 @@ Atlas digital interativo com indicadores socioambientais dos **1.940 setores cen
 - Índice de Vulnerabilidade Socioambiental (IVSA) e Índice de Prioridade Territorial (Laboratório de Governança Territorial).
 - Vegetação (Sentinel-2), temperatura de superfície (Landsat 8 e 9), suscetibilidade a inundação, cenários de cheia do Rio Cuiabá, carta de suscetibilidade do SGB, solos, erosão e cobertura da terra (MapBiomas).
 - Demarcação de Áreas de Preservação Permanente e de nascentes pela Lei 12.651/2012, art. 4º.
+- Série histórica dos sete municípios nos Censos de 1991, 2000, 2010 e 2022 (IBGE): população, domicílios, água, esgoto, coleta de lixo e alfabetização.
 - Saúde ambiental (DATASUS, 2023–2025) e relação dos indicadores com os Objetivos de Desenvolvimento Sustentável.
 - Metodologia com fórmulas, fontes, aferição de cada indicador e relatório de auditoria.
 
@@ -36,7 +37,7 @@ Resultado da pesquisa de Pós-Doutorado *“Indicadores ambientais como ferramen
 
 ## Verificação e reprodução
 
-Todos os indicadores podem ser conferidos: a página **Metodologia** do Atlas traz a fórmula e a fonte de cada um, e a página **Aferição** descreve como cada família de indicadores foi testada. O relatório `docs/auditoria_atlas_rmvrc_v25.pdf` registra o recálculo independente dos 24 indicadores censitários para os 1.940 setores, sem divergência.
+Todos os indicadores podem ser conferidos: a página **Metodologia** do Atlas traz a fórmula e a fonte de cada um, e a página **Aferição** descreve como cada família de indicadores foi testada. O relatório `docs/auditoria_atlas_rmvrc_v40.pdf` registra a auditoria completa de 17/10/2026 (tabelas do IBGE idênticas às versões vigentes, recálculo dos 24 indicadores censitários sem divergência e as correções feitas); `docs/auditoria_atlas_rmvrc_v25.pdf` é a auditoria anterior, de 01/10/2026.
 
 As imagens de satélite e os modelos de terreno originais não estão no repositório por causa do tamanho; `scripts/satelite_inundacao/` documenta de onde foram obtidos e como foram processados.
 
