@@ -102,13 +102,9 @@ IT=[
   onde='<a href="#lab">Governança</a> · <a href="#formulas">Metodologia, item 11</a>'),
 ]
 PEND=[
- ('Renda média do responsável','A média do município é quase exata.','Média dos setores ponderada pelos domicílios ocupados.','Ponderar pelo número de responsáveis com rendimento de cada setor.','Pequeno: os dois pesos são muito parecidos, mas não idênticos.'),
  ('Renda mediana','A mediana do município é só indicativa.','Média ponderada das medianas dos setores.','A mediana de um município não se obtém das medianas dos setores; exigiria os microdados do Censo.','No setor, a mediana é a do IBGE; no agregado, use a renda média.'),
- ('Analfabetismo 15+','A média do município é uma boa aproximação.','Ponderado pelos moradores do setor.','Ponderar pela população de 15 anos ou mais.','Pequeno; maior onde há muitas crianças.'),
- ('Entorno urbano (arborização, pavimento, calçada, bueiro, iluminação, ônibus)','A média do município é uma boa aproximação.','Ponderado pelos moradores do setor.','Ponderar pelos moradores do universo da pesquisa de entorno (faces de quadra).','Pequeno nas áreas urbanas consolidadas.'),
  ('Cobertura vegetal e vegetação nativa','Só importa em setores com rio largo ou lagoa.','Ponderado pela área total do setor.','Ponderar pela área fora da água, que é o denominador do indicador.','Desprezível na maioria dos setores.'),
  ('Temperatura de superfície','Há duas médias, com usos diferentes.','Média ponderada pela área: 38,5 °C nos setores urbanos da conurbação.','A anomalia térmica usa a média simples dos setores: 39,1 °C.','A referência da anomalia é 39,1 °C em todo o Atlas; os dois critérios não se confundem.'),
- ('Cheias de 1974 e 1995 (ANADEM)','Duas tabelas diferem em 1 pessoa.','Cenários: 28.233 e 34.521 moradores; calibração: 28.232 e 34.520.','Mesmo arredondamento nas duas tabelas.','Diferença de 1 pessoa, por arredondamento.'),
 ]
 E=_h.escape
 cards=''.join(f"""<details class='dcard acard'><summary><b>{E(i['n'])}</b><span>{E(i['s'])}</span><span class='afs {i['st']}'>{ST[i['st']]}</span></summary>

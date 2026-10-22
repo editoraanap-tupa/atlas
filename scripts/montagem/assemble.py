@@ -38,6 +38,21 @@ for f in DATA['features']+S1['NEWF']:
     f['properties']['micro']=_mic['per'].get(_i,'')
     f['properties']['bac']=_bac['per_bacias'].get(_i,''); f['properties']['subbac']=_bac['per_sub'].get(_i,'')
 FEAT=DATA['features']+S1['NEWF']
+# auditoria 17/10/2026: Área em APP recalculada com as faixas da Lei 12.651/2012 (camada vetorial) em todos os setores
+_APP2=json.load(open('/home/claude/aud/app_sector.json'))
+for _f in FEAT:
+    _p=_f['properties']; _a=_APP2.get(_p['id'])
+    _p['app_pct']=_a; _p['app_pop']=int(round(_p['pop']*_a/100)) if _a is not None else None
+# pesos exatos para as médias de município, bairro e microbacia (denominadores do IBGE)
+import sys as _sys; _sys.path.insert(0,'/home/claude/d')
+from calc import T as _T, g as _g
+for _f in FEAT:
+    _p=_f['properties']; _c=_p['id']
+    _A=_T['alfabetizacao'].get(_c); _E=_T['entorno_moradores'].get(_c); _R=_T['renda'].get(_c)
+    _na=_g(_A,'V00901'); _sa=_g(_A,'V00900')
+    _p['w15']=int((_na or 0)+(_sa or 0)) if (_na is not None or _sa is not None) else None
+    _e=_g(_E,'V05200'); _p['went']=int(_e) if _e else None
+    _r=_g(_R,'V06001'); _p['wr']=int(_r) if _r else None
 ORD=['Cuiabá','Várzea Grande','Nossa Senhora do Livramento','Santo Antônio de Leverger','Acorizal','Chapada dos Guimarães','Campo Verde']
 DATA['features']=FEAT
 HIDRO['features']+=HN
@@ -396,3 +411,5 @@ exec(open('/home/claude/d/lic.py').read())
 exec(open('/home/claude/d/sgbch.py').read())
 exec(open('/home/claude/d/app.py').read())
 exec(open('/home/claude/d/rep2.py').read())
+exec(open('/home/claude/d/hist2.py').read())
+exec(open('/home/claude/d/audit_fix.py').read())
