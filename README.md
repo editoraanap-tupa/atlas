@@ -21,9 +21,11 @@ Atlas digital interativo com indicadores socioambientais dos **1.940 setores cen
 
 Resultado da pesquisa de Pós-Doutorado *“Indicadores ambientais como ferramenta para a sustentabilidade urbana: estudo de caso na Região Metropolitana do Vale do Rio Cuiabá (RMVRC)”*, desenvolvida no Programa de Pós-Graduação em Arquitetura e Urbanismo do Centro Universitário de Várzea Grande (PPGAU-UNIVAG).
 
+**Desenvolvimento, programação e implementação do website institucional:** Prof. Dr. Ricardo Miranda dos Santos e Profa. Dra. Sandra Medina Benini (PPGAU/UNIVAG, 2026).
+
 ## Como citar
 
-> SANTOS, Ricardo Miranda dos; BENINI, Sandra Medina. **Atlas Socioambiental da Região Metropolitana do Vale do Rio Cuiabá (RMVRC)**. Várzea Grande: PPGAU-UNIVAG, 2026. Atlas digital interativo.
+> SANTOS, Ricardo Miranda dos; BENINI, Sandra Medina. **Atlas Socioambiental da Região Metropolitana do Vale do Rio Cuiabá (RMVRC)**. Várzea Grande: PPGAU-UNIVAG, 2026. Atlas digital interativo. Disponível em: https://atlasrmvrc.com.br.
 
 ## Conteúdo do repositório
 
