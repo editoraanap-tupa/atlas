@@ -1128,6 +1128,8 @@ body.pdfmode .hlp{display:none!important}
 :root[data-theme="dark"] .appc{stroke:#d7f7e2} :root[data-theme="dark"] .appr{stroke:#b8c4dc} :root[data-theme="dark"] .nasc{stroke:#ffb37a;fill:rgba(255,150,80,.25)} :root[data-theme="dark"] .nasp{stroke:#ffb37a}
 
 .ivwarn{margin:10px 0 2px;padding:8px 10px;border-left:3px solid var(--ochre);background:var(--panel-2);border-radius:6px;font-size:12.5px;line-height:1.45;color:var(--fg)}
+
+.pyrnote{margin:8px 0 0;padding:7px 10px;border-left:3px solid var(--ochre);background:var(--panel-2);border-radius:6px;font-size:12px;line-height:1.45;color:var(--fg)}
 </style>
 <script>try{var __t=localStorage.getItem('atlas-rmvrc-tema');if(__t==='dark'||__t==='light')document.documentElement.setAttribute('data-theme',__t);}catch(e){}</script>
 
@@ -2191,7 +2193,7 @@ body.pdfmode .hlp{display:none!important}
         <li>Nos 189 setores que não cabem nos recortes de alta resolução, quase todos rurais, a vegetação usa pixels de 40 m e a temperatura, amostra de 120 m; a cobertura vegetal fica cerca de 2 pontos abaixo da que seria medida a 10 m.</li>
         <li>A suscetibilidade a inundação mede a altura acima do rio ou córrego mais próximo em linha reta, e não pelo caminho da água: é uma triagem, mais simples que o HAND completo.</li>
         <li>Distâncias em linha reta, só com equipamentos dentro da RMVRC.</li>
-        <li>Em 209 setores o IBGE oculta células pequenas da pirâmide etária (sigilo).</li>
+        <li>Em 412 setores a soma das faixas etárias difere da população do setor porque o IBGE oculta valores pequenos das tabelas por idade e sexo (sigilo estatístico): em 321 a diferença é de até 10 pessoas; em 29 setores (3.452 moradores) o IBGE não divulgou nenhuma faixa etária. A ficha do setor traz uma nota explicando a diferença.</li>
         <li>Cheias e microbacias usam modelo de terreno de 30 m: servem para planejamento, não para o lote.</li>
         <li>Moradores em APP e em manchas de inundação são população × fração da área: não localizam pessoas nem edificações.</li>
       </ul>
@@ -2742,10 +2744,13 @@ function gaugeSVG(v){
   s+=`<text x="${cx-r}" y="${cy+14}" text-anchor="middle" font-size="10" fill="var(--muted)" font-family="var(--f-mono)">0</text><text x="${cx+r}" y="${cy+14}" text-anchor="middle" font-size="10" fill="var(--muted)" font-family="var(--f-mono)">100</text>`;
   return `<svg viewBox="0 0 140 88" width="150" aria-label="Medidor do IVSA">${s}</svg>`;
 }
+function pyrNote(p){ if(!p.pm||!p.pop||!(d3.sum(p.pm)+d3.sum(p.pf))) return ''; const s=d3.sum(p.pm)+d3.sum(p.pf), d=Math.round(p.pop-s); if(!d) return '';
+  const n=Math.abs(d), pe=n===1?'pessoa':'pessoas';
+  return `<p class="pyrnote"><b>Nota:</b> a soma das faixas etárias (${ptBR(fmtN(s))}) ${d>0?'é menor':'é maior'} que a população do setor (${ptBR(fmtN(p.pop))}) em ${n} ${pe}. Isso acontece porque o IBGE oculta valores muito pequenos das tabelas por idade e sexo, para que nenhum morador possa ser identificado (sigilo estatístico). Os percentuais da pirâmide são calculados sobre a soma das faixas; a população total do setor não é afetada.</p>`; }
 function pyramidSVG(p){
   if(!p.pm) return '<div class="empty">Sem dados de idade para este setor.</div>';
   const W2=340, rowH=13, mid=W2/2, gap=20, top=4, H2=top+rowH*11+18;
-  const tot=d3.sum(p.pm)+d3.sum(p.pf); if(!tot) return '<div class="empty">Setor sem moradores.</div>';
+  const tot=d3.sum(p.pm)+d3.sum(p.pf); if(!tot) return p.pop>0?`<p class="pyrnote"><b>Sem pirâmide etária:</b> o setor tem ${ptBR(fmtN(p.pop))} moradores, mas o IBGE não divulgou a idade e o sexo deles, para que nenhum morador possa ser identificado (sigilo estatístico).</p>`:'<div class="empty">Setor sem moradores.</div>';
   const sm=p.pm.map(v=>v/tot), sf=p.pf.map(v=>v/tot);
   const mx=Math.max(d3.max(sm),d3.max(sf),d3.max(REF.m),d3.max(REF.f))*1.05;
   const x=d3.scaleLinear().domain([0,mx]).range([0,mid-gap-4]);
@@ -3808,7 +3813,7 @@ function renderEixos(p){
   h+=`<div class="ep s3">${ehead('ent','% dos domicílios com o item na face de quadra')}<div class="edons">${['arvore','pav','calcada','bueiro','luz','onibus'].map(k=>donut(k,p)).join('')}</div></div>`;
   h+=`<div class="ep s3">${ehead('ace','distância em linha reta · setor × mediana do município × RMVRC')}<div class="etrios g2">${['d_ubs','d_saude','d_esc','d_parque'].map(k=>trio(k,p)).join('')}</div></div>`;
   h+=`<div class="ep s3 eren">${ehead('ren','setor × mediana do município × RMVRC')}${trio('renda',p)}${waffle('analf',p)}</div>`;
-  h+=`<div class="ep s6">${ehead('dem','')}<div class="edem"><div class="edts">${['pop','dens','criancas','idosos','negros','indig','mor'].map(k=>demTile(k,p)).join('')}</div><div class="epyr"><div class="esub" style="margin-top:0">Pirâmide etária (% dos moradores)</div>${pyramidSVG(p)}</div></div></div>`;
+  h+=`<div class="ep s6">${ehead('dem','')}<div class="edem"><div class="edts">${['pop','dens','criancas','idosos','negros','indig','mor'].map(k=>demTile(k,p)).join('')}</div><div class="epyr"><div class="esub" style="margin-top:0">Pirâmide etária (% dos moradores)</div>${pyramidSVG(p)}${pyrNote(p)}</div></div></div>`;
   el.innerHTML=h;
 }
 
