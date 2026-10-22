@@ -137,7 +137,7 @@ function renderLisa(){
   for(let i=0;i<n;i++){ const Ii=z[i]*lag[i]; let c=0; const others=z.filter((_,j)=>j!==i);
     for(let p=0;p<199;p++){ let l=0; for(let q=0;q<K;q++) l+=others[Math.floor(R()*others.length)]; if(Ii>=0 ? z[i]*l/K>=Ii : z[i]*l/K<=Ii) c++; }
     const pi=(c+1)/200; cls[i]=pi<0.05?(z[i]>0&&lag[i]>0?'HH':z[i]<0&&lag[i]<0?'LL':z[i]>0?'HL':'LH'):'NS'; }
-  const COL={HH:'#d7191c',LL:'#2c7bb6',HL:'#fdae61',LH:'#abd9e9',NS:'var(--panel-2)'}, LAB={HH:'alto-alto',LL:'baixo-baixo',HL:'alto-baixo',LH:'baixo-alto',NS:'não significativo'};
+  const COL={HH:'#d7191c',LL:'#2c7bb6',HL:'#fdae61',LH:'#abd9e9',NS:'var(--xp-ns)'}, LAB={HH:'alto-alto',LL:'baixo-baixo',HL:'alto-baixo',LH:'baixo-alto',NS:'não significativo'};
   const byId=new Map(all.map((f,i)=>[f.properties.id,cls[i]]));
   const m=baseMap('ds-map',terrF(DS.t)); m.ps.attr('fill',f=>COL[byId.get(f.properties.id)]||'var(--nodata,#cdd3de)')
     .on('pointermove',(ev,f)=>{ const p=f.properties; tip(ev,`<div class="hst-t">${esc(nmB(p))} · ${esc(p.mun)}</div><div class="hst-r"><b>${xFmt(DS.k,val(f,DS.k))}</b><span>${esc(byK[DS.k].n)}</span></div><div class="hst-n">${LAB[byId.get(p.id)]||'sem dado ou menos de 50 moradores'}</div>`); }).on('pointerleave',()=>hTipHide());
@@ -178,7 +178,7 @@ function renderVal(){
   const cv=ps.filter(p=>['Cuiabá','Várzea Grande'].includes(p.mun)&&p.sit==='Urbana');
   const fc=cv.filter(p=>p.fcu), nf=cv.filter(p=>!p.fcu);
   let auc=0; for(const a of fc) for(const b of nf) auc+=a.ivsa>b.ivsa?1:a.ivsa===b.ivsa?.5:0; auc/=fc.length*nf.length||1;
-  const ext=[['negros','Pretos e pardos (%)',1],['criancas','Crianças de 0 a 9 anos (%)',1],['mor','Moradores por domicílio',1],['inund','Suscetibilidade alta a inundação',1],['verde','Cobertura vegetal',-1],['lst','Temperatura de superfície',1],['d_ubs','Distância à USF/UBS',1]];
+  const ext=[['negros','Pretos e pardos (%)',1],['criancas','Crianças de 0 a 9 anos (%)',1],['mor','Moradores por domicílio',1],['inund','Suscetibilidade alta a inundação',1]];
   const sp=(U,k)=>{ const q=U.filter(p=>p[k]!=null&&p.pop>=50); return [spear(q.map(p=>p.ivsa),q.map(p=>p[k])),q.length]; };
   const cvu=cv.filter(p=>p.pop>=50);
   const rr=ext.map(([k,n,e])=>{ const A=sp(ps,k), B=sp(cv,k); return [n,e,A[0],A[1],B[0],B[1]]; });
@@ -187,7 +187,7 @@ function renderVal(){
   const bad=rr.filter(r=>r[2]!=null&&Math.sign(r[2])!==r[1]&&Math.abs(r[2])>=.1).map(r=>r[0].toLowerCase());
   document.getElementById('ds-conv').innerHTML=`<div class="xpk"><b>${ptBR(d3.format('.2f')(auc))}</b><span>AUC: probabilidade de um setor de favela ou comunidade urbana (IBGE) ter IVSA maior que um setor comum, nas áreas urbanas da conurbação (${nF(fc.length)} e ${nF(nf.length)} setores). 0,5 = acaso; 1 = separação perfeita; acima de 0,7 costuma ser considerado discriminação aceitável. Média do IVSA: ${ptBR(fmt1(d3.mean(fc,p=>p.ivsa)))} nas favelas e comunidades urbanas e ${ptBR(fmt1(d3.mean(nf,p=>p.ivsa)))} nos demais.</span></div>
   <div class="tblwrap" style="max-height:none"><table class="dt xpt"><thead><tr><th class="l">Variável fora do índice</th><th>Sinal esperado</th><th>RMVRC</th><th>Confere?</th><th>Conurbação urbana</th><th>Confere?</th></tr></thead><tbody>${rr.map(r=>`<tr><td class="l">${r[0]}</td><td>${r[1]>0?'+':'−'}</td><td>${f2(r[2])}</td><td>${ok(r[2],r[1])}</td><td>${f2(r[4])}</td><td>${ok(r[4],r[1])}</td></tr>`).join('')}</tbody></table></div>
-  <p class="note">Correlação de Spearman nos setores com 50 ou mais moradores (${nF(ps.filter(p=>p.pop>=50).length)} na RMVRC; ${nF(cvu.length)} na conurbação urbana). Essas variáveis não entram no cálculo do IVSA. “Fraca”: |ρ| &lt; 0,10.${bad.length?` Sinal contrário ao esperado em ${bad.join(', ')}: os setores mais vulneráveis ficam sobretudo nas bordas da mancha urbana e nas áreas rurais, com lotes vazios, chácaras e vegetação remanescente, enquanto os bairros centrais e de maior renda são mais construídos. Nesses casos a cobertura vegetal mede também o grau de consolidação urbana, e não apenas o conforto ambiental; por isso ela não entra no IVSA e deve ser lida junto com a arborização das vias (Censo), que acompanha a renda.`:''}</p>`;
+  <p class="note">Correlação de Spearman nos setores com 50 ou mais moradores (${nF(ps.filter(p=>p.pop>=50).length)} na RMVRC; ${nF(cvu.length)} na conurbação urbana). Essas variáveis não entram no cálculo do IVSA.</p>`;
   // robustez: 300 conjuntos de pesos de Dirichlet(1) sobre os 7 componentes
   const CC=WC.filter(c=>W0[c.k]>0), C=CC.map(c=>c.k), w0=CC.map(c=>W0[c.k]);
   const base=F.filter(f=>f.properties.pop>=50&&f.properties._ic);
@@ -280,7 +280,7 @@ function renderExplore(force){ try{
   const w=Math.round((document.querySelector('main,body').clientWidth||0)/40);
   const due=id=>{ if(!pg(id)) return false; if(!force&&LASTW[id]===w) return false; LASTW[id]=w; return true; };
   if(due('explorar')){ renderBiv(); renderConds(); runQuery(); renderCmp(); }
-  if(due('desig')){ renderLisa(); renderIneq(); renderGrad(); renderVal(); renderConf(); }
+  if(due('desig')){ renderLisa(); renderIneq(); renderGrad(); renderVal(); }
   if(due('politicas')) renderPol();
  }catch(e){ console.error(e); } }
 window.renderExplore=renderExplore; window.__xp={renderBiv,renderLisa,renderVal,renderPol,conf,knn};

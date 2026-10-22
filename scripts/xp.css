@@ -78,3 +78,4 @@
 .xpside .dt td.l{min-width:0}
 .pph .kick{display:block;font:700 11px var(--f-body);letter-spacing:.14em;text-transform:uppercase;color:var(--ochre)}
 .ppd p{font-size:13px;line-height:1.5;margin:0 0 6px;color:var(--fg)}
+:root{--xp-ns:color-mix(in srgb,var(--fg) 14%,var(--panel))}
