@@ -2685,8 +2685,8 @@ async function relevo(){
     const st=Math.max(1,Math.ceil(Math.max(Wm,Hm)/700)); const gw=Math.floor(Wm/st), gh=Math.floor(Hm/st); const V=new Float64Array(gw*gh);
     for(let y=0;y<gh;y++) for(let x=0;x<gw;x++) V[y*gw+x]=E[(y*st)*Wm+x*st];
     const px=1/(vb.s*k), mppS=mPerUnit(viewLat())*px;
-    const iv=[1,2,5,10,20,25,50,100,200,250,500].find(q=>q/mppS>=14)||500, idx=iv*5;
-    const zmin=d3.min(V), zmax=d3.max(V); const th=d3.range(Math.ceil(zmin/iv)*iv,zmax,iv); if(th.length>160) th.length=160;
+    const zmin=d3.min(V), zmax=d3.max(V);
+    const iv=[1,2,5,10,20,25,50,100,200,250,500].find(q=>(zmax-zmin)/q<=18)||500, idx=iv*5; const th=d3.range(Math.ceil(zmin/iv)*iv,zmax,iv); if(th.length>160) th.length=160;
     const toLLg=(gx,gy)=>{ const X=X0+gx*st/256, Y=Y0+gy*st/256; return proj([x2lon(X,z),y2lat(Y,z)]); };
     const cs=d3.contours().size([gw,gh]).thresholds(th)(Array.from(V));
     const lines=[], labs=[];
