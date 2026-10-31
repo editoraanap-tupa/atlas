@@ -171,7 +171,7 @@ h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0}
 .mapwrap:fullscreen #map{width:100%;height:100%;max-height:none}
 @media (max-width:600px){.mtools button{width:32px;height:32px}.mtools{gap:4px}.minfo{max-width:calc(100% - 24px);top:auto;bottom:56px}}
 @media print{.mtools,.minfo,.mmenu,.mcoord{display:none!important}}
-.mprof{position:absolute;left:12px;right:12px;bottom:60px;background:var(--panel);color:var(--fg);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);padding:10px 14px 8px;z-index:7;font:13px/1.4 var(--f-body)}
+.mprof{position:relative;margin:10px 0 4px;background:var(--panel);color:var(--fg);border:1px solid var(--line);border-radius:12px;padding:10px 14px 8px;font:13px/1.4 var(--f-body)}
 .mprof .mp-h{display:flex;flex-wrap:wrap;gap:2px 12px;align-items:baseline;padding-right:28px}
 .mprof .mp-h span{color:var(--muted);font-size:12px}
 .mprof small{display:block;color:var(--muted);font-size:11px;margin-top:2px}
@@ -2538,7 +2538,7 @@ wrap.appendChild(bar);
 const info=document.createElement('div'); info.className='minfo'; info.hidden=true; wrap.appendChild(info);
 const cbox=document.createElement('div'); cbox.className='mcoord'; cbox.hidden=true; wrap.appendChild(cbox);
 const menu=document.createElement('div'); menu.className='mmenu'; menu.hidden=true; wrap.appendChild(menu);
-const prof=document.createElement('div'); prof.className='mprof'; prof.hidden=true; wrap.appendChild(prof);
+const prof=document.createElement('div'); prof.className='mprof'; prof.hidden=true; wrap.after(prof);
 const gT=g.append('g').attr('class','mtool-g').attr('pointer-events','none');
 const dms=(v,pos,neg)=>{ const ts=Math.round(Math.abs(v)*3600), d=Math.floor(ts/3600), m=Math.floor(ts%3600/60), s=ts%60; return d+'°'+String(m).padStart(2,'0')+'′'+String(s).padStart(2,'0')+'″ '+(v<0?neg:pos); };
 const llTxt=ll=>dms(ll[1],'N','S')+' · '+dms(ll[0],'L','O');
@@ -2578,6 +2578,7 @@ function setMode(m){
 }
 info.addEventListener('click',e=>{ if(e.target.closest('[data-clr]')){ e.preventDefault(); pts=[]; pins=[]; gpsPt=null; if(!mode) info.hidden=true; draw(); } });
 async function perfil(){
+  if(document.fullscreenElement) document.exitFullscreen();
   const P=pts.slice(); const cum=[0]; for(let i=1;i<P.length;i++) cum.push(cum[i-1]+d3.geoDistance(P[i-1],P[i])*6371.0088);
   const L=cum[cum.length-1], N=100;
   const S=d3.range(N).map(j=>{ const dd=L*j/(N-1); let i=1; while(i<cum.length-1&&cum[i]<dd) i++; const f=(dd-cum[i-1])/((cum[i]-cum[i-1])||1); const a=P[i-1], b=P[i]; return {d:dd,ll:[a[0]+(b[0]-a[0])*f,a[1]+(b[1]-a[1])*f]}; });
@@ -2608,6 +2609,7 @@ function drawProf(S,L){
     hv.attr('display',null); hv.select('line').attr('x1',x(s.d)).attr('x2',x(s.d)); hv.select('circle').attr('cx',x(s.d)).attr('cy',y(s.z)); ht.attr('x',x(s.d)+(x(s.d)>Wd/2?-6:6)).attr('text-anchor',x(s.d)>Wd/2?'end':'start').text(km(s.d)+' · '+fm(s.z));
     const k=d3.zoomTransform(svg.node()).k, p=proj(s.ll); gT.selectAll('circle.mt-h').data([0]).join('circle').attr('class','mt-h').attr('cx',p[0]).attr('cy',p[1]).attr('r',6/k); })
    .on('pointerleave',()=>{ hv.attr('display','none'); gT.selectAll('circle.mt-h').remove(); });
+  prof.scrollIntoView({block:'nearest',behavior:'smooth'});
 }
 prof.addEventListener('click',e=>{ if(e.target.closest('.mp-x')){ prof.hidden=true; pts=[]; gT.selectAll('circle.mt-h').remove(); draw(); } });
 svg.node().addEventListener('click',e=>{ if(!mode) return; e.stopPropagation(); e.preventDefault(); const ll=toLL(e); if(!ll) return; if(mode==='pino') pins.push(ll); else pts.push(ll); draw(); },true);
